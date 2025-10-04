@@ -105,43 +105,43 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-muted/30">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-background via-background to-secondary/20">
       <div className="w-full max-w-6xl grid md:grid-cols-2 gap-8 items-center">
         {/* Left side - Branding */}
         <div className="hidden md:flex flex-col justify-center space-y-6 p-8">
           <div className="flex items-center gap-3 mb-8">
-            <div className="h-12 w-12 rounded-lg bg-primary flex items-center justify-center shadow-md">
+            <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center glow-cyan">
               <TrendingUp className="h-7 w-7 text-primary-foreground" />
             </div>
-            <h1 className="text-3xl font-bold text-foreground">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               ExpenseFlow
             </h1>
           </div>
-          <h2 className="text-2xl font-semibold text-foreground">
+          <h2 className="text-3xl font-bold text-foreground">
             Streamline Your Company Expenses
           </h2>
-          <p className="text-base text-muted-foreground leading-relaxed">
-            Professional expense management with multi-level approvals, receipt tracking, 
-            and comprehensive analytics for modern businesses.
+          <p className="text-lg text-muted-foreground">
+            Modern expense management with multi-level approvals, OCR receipt scanning, 
+            and real-time analytics. Built for the future of finance.
           </p>
           <div className="flex gap-4 pt-4">
-            <div className="bg-card border border-border p-4 rounded-lg flex-1 shadow-sm">
-              <Rocket className="h-5 w-5 text-primary mb-2" />
-              <h3 className="font-medium text-sm mb-1">Fast Approvals</h3>
-              <p className="text-xs text-muted-foreground">Efficient workflow management</p>
+            <div className="glass p-4 rounded-xl flex-1">
+              <Rocket className="h-6 w-6 text-primary mb-2" />
+              <h3 className="font-semibold mb-1">Fast Approvals</h3>
+              <p className="text-sm text-muted-foreground">Multi-level approval workflows</p>
             </div>
-            <div className="bg-card border border-border p-4 rounded-lg flex-1 shadow-sm">
-              <TrendingUp className="h-5 w-5 text-primary mb-2" />
-              <h3 className="font-medium text-sm mb-1">Analytics</h3>
-              <p className="text-xs text-muted-foreground">Track spending insights</p>
+            <div className="glass p-4 rounded-xl flex-1">
+              <TrendingUp className="h-6 w-6 text-secondary mb-2" />
+              <h3 className="font-semibold mb-1">Real-time Analytics</h3>
+              <p className="text-sm text-muted-foreground">Track spending patterns</p>
             </div>
           </div>
         </div>
 
         {/* Right side - Auth form */}
-        <Card className="p-8 shadow-lg border">
+        <Card className="glass p-8 shadow-[var(--shadow-elevated)]">
           <Tabs defaultValue="login" className="w-full" onValueChange={(v) => setIsLogin(v === 'login')}>
-            <TabsList className="grid w-full grid-cols-2 mb-6">
+            <TabsList className="grid w-full grid-cols-2 mb-8">
               <TabsTrigger value="login">Login</TabsTrigger>
               <TabsTrigger value="signup">Sign Up</TabsTrigger>
             </TabsList>
@@ -149,7 +149,7 @@ export default function Auth() {
             <TabsContent value="login">
               <form onSubmit={handleAuth} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email Address</Label>
+                  <Label htmlFor="email">Email</Label>
                   <Input
                     id="email"
                     type="email"
@@ -157,6 +157,7 @@ export default function Auth() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    className="glass-hover"
                   />
                 </div>
                 <div className="space-y-2">
@@ -164,15 +165,16 @@ export default function Auth() {
                   <Input
                     id="password"
                     type="password"
-                    placeholder="Enter your password"
+                    placeholder="••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
+                    className="glass-hover"
                   />
                 </div>
                 <Button
                   type="submit"
-                  className="w-full"
+                  className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 glow-cyan"
                   disabled={loading}
                 >
                   {loading ? 'Signing in...' : 'Sign In'}
@@ -191,10 +193,11 @@ export default function Auth() {
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     required
+                    className="glass-hover"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="signupEmail">Email Address</Label>
+                  <Label htmlFor="signupEmail">Email</Label>
                   <Input
                     id="signupEmail"
                     type="email"
@@ -202,6 +205,7 @@ export default function Auth() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    className="glass-hover"
                   />
                 </div>
                 <div className="space-y-2">
@@ -209,10 +213,11 @@ export default function Auth() {
                   <Input
                     id="signupPassword"
                     type="password"
-                    placeholder="Minimum 6 characters"
+                    placeholder="••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
+                    className="glass-hover"
                   />
                 </div>
                 <div className="space-y-2">
@@ -220,16 +225,17 @@ export default function Auth() {
                   <Input
                     id="companyName"
                     type="text"
-                    placeholder="Your Company Ltd"
+                    placeholder="Acme Corp"
                     value={companyName}
                     onChange={(e) => setCompanyName(e.target.value)}
                     required
+                    className="glass-hover"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="currency">Default Currency</Label>
+                  <Label htmlFor="currency">Currency</Label>
                   <Select value={currency} onValueChange={setCurrency}>
-                    <SelectTrigger>
+                    <SelectTrigger className="glass-hover">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -244,7 +250,7 @@ export default function Auth() {
                 <div className="space-y-2">
                   <Label htmlFor="role">Your Role</Label>
                   <Select value={role} onValueChange={(v: any) => setRole(v)}>
-                    <SelectTrigger>
+                    <SelectTrigger className="glass-hover">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -256,7 +262,7 @@ export default function Auth() {
                 </div>
                 <Button
                   type="submit"
-                  className="w-full"
+                  className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 glow-cyan"
                   disabled={loading}
                 >
                   {loading ? 'Creating account...' : 'Create Account'}

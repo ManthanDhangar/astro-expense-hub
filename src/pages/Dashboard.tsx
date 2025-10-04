@@ -95,116 +95,112 @@ export default function Dashboard() {
     );
   }
 
-  const COLORS = ['hsl(221 83% 53%)', 'hsl(142 71% 45%)', 'hsl(38 92% 50%)', 'hsl(271 91% 65%)'];
+  const COLORS = ['hsl(189 97% 55%)', 'hsl(271 91% 65%)', 'hsl(120 70% 50%)', 'hsl(40 90% 55%)'];
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="border-b bg-card">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-4">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            <div>
-              <h1 className="text-2xl font-semibold text-foreground">
-                Expense Dashboard
-              </h1>
-              <p className="text-sm text-muted-foreground mt-1">
-                Monitor and manage your company expenses
-              </p>
-            </div>
-            {hasRole(roles, 'admin') && (
-              <div className="flex items-center gap-2 bg-primary/10 text-primary px-3 py-1.5 rounded-md border border-primary/20">
-                <Users className="h-4 w-4" />
-                <span className="text-xs font-medium">Admin</span>
-              </div>
-            )}
+    <div className="min-h-screen bg-background p-4 md:p-8">
+      <div className="max-w-7xl mx-auto space-y-8">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div>
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Dashboard
+            </h1>
+            <p className="text-muted-foreground mt-1">
+              Welcome back! Here's your expense overview
+            </p>
           </div>
+          {hasRole(roles, 'admin') && (
+            <div className="flex items-center gap-2 glass px-4 py-2 rounded-lg">
+              <Users className="h-4 w-4 text-primary" />
+              <span className="text-sm font-medium">Admin Access</span>
+            </div>
+          )}
         </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto p-4 md:p-8 space-y-6">
 
         {/* Stats Cards */}
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <Card className="border shadow-sm p-5">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <Card className="glass p-6 glass-hover transition-smooth">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs text-muted-foreground uppercase tracking-wide">Total Expenses</p>
-                <h3 className="text-2xl font-semibold mt-2 text-foreground">${stats.totalExpenses.toFixed(2)}</h3>
+                <p className="text-sm text-muted-foreground">Total Expenses</p>
+                <h3 className="text-2xl font-bold mt-1">${stats.totalExpenses.toFixed(2)}</h3>
               </div>
-              <div className="h-10 w-10 rounded-md bg-primary/10 flex items-center justify-center">
-                <DollarSign className="h-5 w-5 text-primary" />
+              <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center glow-cyan">
+                <DollarSign className="h-6 w-6 text-primary" />
               </div>
             </div>
           </Card>
 
-          <Card className="border shadow-sm p-5">
+          <Card className="glass p-6 glass-hover transition-smooth">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs text-muted-foreground uppercase tracking-wide">Pending</p>
-                <h3 className="text-2xl font-semibold mt-2 text-foreground">{stats.pendingApprovals}</h3>
+                <p className="text-sm text-muted-foreground">Pending Approvals</p>
+                <h3 className="text-2xl font-bold mt-1">{stats.pendingApprovals}</h3>
               </div>
-              <div className="h-10 w-10 rounded-md bg-warning/10 flex items-center justify-center">
-                <Clock className="h-5 w-5 text-warning" />
+              <div className="h-12 w-12 rounded-full bg-secondary/10 flex items-center justify-center glow-purple">
+                <Clock className="h-6 w-6 text-secondary" />
               </div>
             </div>
           </Card>
 
-          <Card className="border shadow-sm p-5">
+          <Card className="glass p-6 glass-hover transition-smooth">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs text-muted-foreground uppercase tracking-wide">Approved</p>
-                <h3 className="text-2xl font-semibold mt-2 text-foreground">{stats.approvedClaims}</h3>
+                <p className="text-sm text-muted-foreground">Approved Claims</p>
+                <h3 className="text-2xl font-bold mt-1">{stats.approvedClaims}</h3>
               </div>
-              <div className="h-10 w-10 rounded-md bg-success/10 flex items-center justify-center">
-                <CheckCircle className="h-5 w-5 text-success" />
+              <div className="h-12 w-12 rounded-full bg-green-500/10 flex items-center justify-center">
+                <CheckCircle className="h-6 w-6 text-green-500" />
               </div>
             </div>
           </Card>
 
-          <Card className="border shadow-sm p-5">
+          <Card className="glass p-6 glass-hover transition-smooth">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs text-muted-foreground uppercase tracking-wide">Rejected</p>
-                <h3 className="text-2xl font-semibold mt-2 text-foreground">{stats.rejectedClaims}</h3>
+                <p className="text-sm text-muted-foreground">Rejected Claims</p>
+                <h3 className="text-2xl font-bold mt-1">{stats.rejectedClaims}</h3>
               </div>
-              <div className="h-10 w-10 rounded-md bg-destructive/10 flex items-center justify-center">
-                <XCircle className="h-5 w-5 text-destructive" />
+              <div className="h-12 w-12 rounded-full bg-destructive/10 flex items-center justify-center">
+                <XCircle className="h-6 w-6 text-destructive" />
               </div>
             </div>
           </Card>
         </div>
 
         {/* Charts */}
-        <div className="grid gap-4 md:grid-cols-2">
-          <Card className="border shadow-sm p-6">
-            <h3 className="text-base font-semibold mb-4 flex items-center gap-2 text-foreground">
-              <TrendingUp className="h-4 w-4 text-primary" />
+        <div className="grid gap-6 md:grid-cols-2">
+          <Card className="glass p-6">
+            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+              <TrendingUp className="h-5 w-5 text-primary" />
               Expenses by Category
             </h3>
             {categoryData.length > 0 ? (
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={categoryData}>
-                  <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
-                  <XAxis dataKey="name" className="text-xs" />
-                  <YAxis className="text-xs" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(222 40% 25%)" />
+                  <XAxis dataKey="name" stroke="hsl(215 20% 65%)" />
+                  <YAxis stroke="hsl(215 20% 65%)" />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: 'hsl(var(--card))',
-                      border: '1px solid hsl(var(--border))',
+                      backgroundColor: 'hsl(222 40% 14%)',
+                      border: '1px solid hsl(222 40% 25%)',
                       borderRadius: '0.5rem',
                     }}
                   />
-                  <Bar dataKey="value" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="value" fill="hsl(189 97% 55%)" radius={[8, 8, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             ) : (
-              <div className="h-[300px] flex items-center justify-center text-sm text-muted-foreground">
+              <div className="h-[300px] flex items-center justify-center text-muted-foreground">
                 No expense data available
               </div>
             )}
           </Card>
 
-          <Card className="border shadow-sm p-6">
-            <h3 className="text-base font-semibold mb-4 text-foreground">Category Distribution</h3>
+          <Card className="glass p-6">
+            <h3 className="text-lg font-semibold mb-4">Category Distribution</h3>
             {categoryData.length > 0 ? (
               <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
@@ -215,7 +211,7 @@ export default function Dashboard() {
                     labelLine={false}
                     label={(entry) => entry.name}
                     outerRadius={100}
-                    fill="hsl(var(--primary))"
+                    fill="hsl(189 97% 55%)"
                     dataKey="value"
                   >
                     {categoryData.map((entry, index) => (
@@ -224,15 +220,15 @@ export default function Dashboard() {
                   </Pie>
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: 'hsl(var(--card))',
-                      border: '1px solid hsl(var(--border))',
+                      backgroundColor: 'hsl(222 40% 14%)',
+                      border: '1px solid hsl(222 40% 25%)',
                       borderRadius: '0.5rem',
                     }}
                   />
                 </PieChart>
               </ResponsiveContainer>
             ) : (
-              <div className="h-[300px] flex items-center justify-center text-sm text-muted-foreground">
+              <div className="h-[300px] flex items-center justify-center text-muted-foreground">
                 No expense data available
               </div>
             )}
